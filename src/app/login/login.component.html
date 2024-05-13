@@ -7,14 +7,18 @@
       </mat-error>
     </mat-form-field>
   <br>
-    <mat-form-field appearance="fill">
-      <mat-label>Password</mat-label>
-      <input matInput formControlName="password" type="password" placeholder="Enter your password">
-      <mat-error *ngIf="loginForm.controls.password.invalid && loginForm.controls.password.touched">
-        <span *ngIf="loginForm.controls.password.errors?.required">Password is required</span>
-        <span *ngIf="loginForm.controls.password.errors?.minlength">Password must be at least 5 characters</span>
-      </mat-error>
-    </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Password</mat-label>
+    <input matInput formControlName="password" type="password" placeholder="Enter your password">
+    <mat-error *ngIf="loginForm.controls.password.touched && loginForm.controls.password.hasError('required')">
+      Password is required
+    </mat-error>
+    <mat-error *ngIf="loginForm.controls.password.touched && loginForm.controls.password.hasError('minlength')">
+      Password must be at least 5 characters
+    </mat-error>
+  </mat-form-field>
+  
+  
   
     <button mat-button type="submit" [disabled]="loading">Login</button>
   
